@@ -31,8 +31,8 @@ return (
         <Image
           unoptimized
           alt={post?.fields?.author[0].fields.name}
-          height="30px"
-          width="30px"
+          height="30"
+          width="30"
           className="align-middle rounded-full"
           src={post?.fields?.author[0].fields.photo.fields.file.url}
         />

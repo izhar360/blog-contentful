@@ -17,8 +17,8 @@ return (
         <Image
           unoptimized
           alt={post?.authorObj.name}
-          height="30px"
-          width="30px"
+          height="30"
+          width="30"
           className="align-middle drop-shadow-lg rounded-full"
           src={post.authorObj.photo.fields.file.url}
         />
