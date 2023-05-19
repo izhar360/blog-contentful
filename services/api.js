@@ -10,12 +10,12 @@
   
   
   export async function getBlogCategories() {
- // console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBtokeeeen", process.env.NEXT_PUBLIC_SPACE_ID)
+
     
     const response = await client.getEntries({
       content_type: 'category'
     });
-    // console.log("zxxxx",response.items)
+
     return response.items;
    
   }
@@ -27,13 +27,13 @@
         content_type: 'post',
         'fields.featuredPost': true
       });
-      // console.log("entries here",entries); 
+   
     
       const posts = entries?.items.map(item => {
         const { title, slug, author } = item.fields;
         const {name,bio,photo} = author[0].fields;
         const authorObj = {name,bio,photo}
-       // console.log("authors here",authorObj); 
+
         const { createdAt } = item.sys;
         //const author = item.fields.author[0].fields.name;
         const featuredImage = item.fields.freaturedImage.fields.file.url;
@@ -46,7 +46,7 @@
           createdAt
         };
       });
-      // console.log("from here",posts); 
+
       return posts;
   };
 
@@ -56,7 +56,7 @@
       content_type: 'post',
       select: 'fields.author,sys.createdAt,fields.slug,fields.title,fields.excerpt,fields.freaturedImage,fields.category'
     });
-    // console.log("from getvblogposts",entries); 
+  
     return entries;
   };
 
@@ -85,9 +85,7 @@
     const nextPostResponse = await client.getEntries(nextPostQuery);
     const nextPost = nextPostResponse.items[0]?.fields;
     const nextPostcreatedAt = nextPostResponse.items[0]?.sys.createdAt;
-    // console.log("next",nextPostcreatedAt); 
-
-    // console.log("fromfasfafa",nextPost); 
+ 
     // Get the previous post
     const previousPostQuery = {
       content_type: 'post',
@@ -99,8 +97,7 @@
     const previousPostResponse = await client.getEntries(previousPostQuery);
     const previousPost = previousPostResponse.items[0]?.fields;
     const previousPostcreatedAt = previousPostResponse.items[0]?.sys.createdAt;
-    // console.log("prewvvvvv",previousPostcreatedAt); 
-  
+ 
     return {
       next: nextPost ? {
         title: nextPost.title,
@@ -126,7 +123,7 @@
       'fields.postSlug': slug
     })
 
-    // console.log("the vhercccc,", entries)
+
     return entries.items;
   };
 
@@ -187,7 +184,7 @@ export const getSimilarBlogPosts = async (category, slug) => {
         slug: item.fields.slug
       }
     });
-    // console.log('recent si ilil posts', posts)
+    
     return posts;
   } catch (error) {
     console.log(error);
